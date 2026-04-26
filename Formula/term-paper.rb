@@ -5,23 +5,23 @@
 class TermPaper < Formula
   desc "Typst-based coursework documentation generator and PDF builder"
   homepage "https://github.com/vasyukov1/hse-coursework-docs"
-  version "0.1.1"
+  version "0.2.0"
   license "MIT"
 
   depends_on "typst"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/vasyukov1/hse-coursework-docs/releases/download/v0.1.1/term-paper_0.1.1_darwin_amd64.tar.gz"
-      sha256 "e21352ee6e81714e0f9bdd2121b63ed30779f9e322ea032dae1fab7ef41c57c0"
+      url "https://github.com/vasyukov1/hse-coursework-docs/releases/download/v0.2.0/term-paper_0.2.0_darwin_amd64.tar.gz"
+      sha256 "e37b5e90001abd0eee828825db954c7bf3d8948911cac1291a2fc4788d2c39b9"
 
       define_method(:install) do
         bin.install "term-paper"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/vasyukov1/hse-coursework-docs/releases/download/v0.1.1/term-paper_0.1.1_darwin_arm64.tar.gz"
-      sha256 "5425fb6632eb229b81281cb9ba4d8cdc070ad79bc8938764a69e61101de9e589"
+      url "https://github.com/vasyukov1/hse-coursework-docs/releases/download/v0.2.0/term-paper_0.2.0_darwin_arm64.tar.gz"
+      sha256 "4f6b862e86149917531958f6e012d153d89e50c2d0c0d40bfb3c7d8aa1763a9b"
 
       define_method(:install) do
         bin.install "term-paper"
@@ -31,15 +31,15 @@ class TermPaper < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/vasyukov1/hse-coursework-docs/releases/download/v0.1.1/term-paper_0.1.1_linux_amd64.tar.gz"
-      sha256 "3aa5dedf4602ebeeb36ed5266dd14b260adaf452417a7aec416c216a29cd0ff5"
+      url "https://github.com/vasyukov1/hse-coursework-docs/releases/download/v0.2.0/term-paper_0.2.0_linux_amd64.tar.gz"
+      sha256 "e5507d6463f3686ecadc4e38a3b9b5a01b48e1e6309092b68fcd070e203761e1"
       define_method(:install) do
         bin.install "term-paper"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/vasyukov1/hse-coursework-docs/releases/download/v0.1.1/term-paper_0.1.1_linux_arm64.tar.gz"
-      sha256 "df9b4d801b33e0390cdff21ca2e322f6381a5adf11ac24831dd9fa490474ad6b"
+      url "https://github.com/vasyukov1/hse-coursework-docs/releases/download/v0.2.0/term-paper_0.2.0_linux_arm64.tar.gz"
+      sha256 "8ad8a167ee2c439510ebe109566063934f7ea03dc90449a19c9a567d7d6bac4b"
       define_method(:install) do
         bin.install "term-paper"
       end
@@ -48,7 +48,7 @@ class TermPaper < Formula
 
   test do
     system "#{bin}/term-paper", "init", "--output", testpath/"demo"
-    system "#{bin}/term-paper", "generate", "--output", testpath/"demo", "--doc", "tz", "--skip-ai"
+    system "#{bin}/term-paper", "generate-doc", "--output", testpath/"demo", "--doc", "pz", "--skip-ai"
     assert_path_exists testpath/"demo"/"term-paper.yaml"
     cd testpath/"demo" do
       system "#{bin}/term-paper", "doctor"
